@@ -29,7 +29,7 @@ export default function LandingText() {
             </div>
             <div className="d-flex justify-content-center" style={{width:"100vw"}}>
                 <Button style={{marginRight:"10px",fontSize:"20px",backgroundColor:"orange", border:"none"}} as={Link} to="/register">Get Started</Button>
-                <Button variant="secondary" style={{marginLeft:"10px",fontSize:"20px"}}>View on Github</Button>
+                <Button variant="secondary" style={{marginLeft:"10px",fontSize:"20px"}} href="https://github.com/Hitansh-Shah/Technobar" target="_blank">View on Github</Button>
             </div>
         </div>
     )
