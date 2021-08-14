@@ -1,0 +1,11 @@
+.profilecard {
+    /* box-shadow: rgba(114, 114, 114, 0.794) 0px 6px 12px -2px, rgba(114, 114, 114, 0.794) 0px 3px 7px -3px; */
+    box-shadow: rgba(110, 108, 108, 1) 0px 5px 15px;
+    transition: all .2s ease-in-out;
+    margin: 20px;
+}
+.profilecard:hover {
+    box-shadow: coral 0px 1px 0px, coral 0px 8px 24px, coral 0px 16px 48px;
+    transform: scale(1.1); 
+
+}

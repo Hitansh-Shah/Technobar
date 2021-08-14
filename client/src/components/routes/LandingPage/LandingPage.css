@@ -1,0 +1,5 @@
+.landing {
+    position: relative;
+    background: url('./background.jpg') no-repeat center center/cover;
+    /* background: url('https://source.unsplash.com/1600x900/?laptop, coding') no-repeat center center/cover; */
+}

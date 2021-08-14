@@ -1,0 +1,6 @@
+.particles {
+    position: absolute;
+    width: 90vw;
+    height: 87vh;
+    overflow: hidden;
+}

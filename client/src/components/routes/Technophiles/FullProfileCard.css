@@ -1,0 +1,10 @@
+.fullprofilecard{
+    box-shadow: rgba(110, 108, 108, 1) 0px 5px 15px;
+}
+
+.subcard {
+    /* margin-bottom: 100px;
+    margin-right: 100px; */
+    border-bottom: 1px solid coral;
+    border-right: 1px solid coral;
+}
