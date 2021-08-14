@@ -2,7 +2,7 @@ import axios from "axios"
 
 const myaxios = axios.create()
 
-myaxios.defaults.baseURL = "http://localhost:5000"
+myaxios.defaults.baseURL = "https://hitansh-technobar.herokuapp.com/"
 // let setIsLoggedIn
 
 // const stateTransfer = (setState) => {
