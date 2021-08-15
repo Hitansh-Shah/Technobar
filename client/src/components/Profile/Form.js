@@ -174,9 +174,9 @@ export default function MyForm({setIsLoggedIn}) {
                             <Form.Control type="text" placeholder="College Name" id="#uname"/>
                         </Form.Group>
     
-                        <Form.Group className="mb-3" controlId="formBasicDate" >
-                            <Form.Label>University Completion</Form.Label>
-                            <Form.Control type="date" id="#uc"/>
+                        <Form.Group className="mb-3" controlId="formBasicMonth" >
+                            <Form.Label >University Completion</Form.Label>
+                            <Form.Control type="month" id="#uc"/>
                         </Form.Group>
                         
                         <Form.Group className="mb-3" controlId="formBasicText" >
