@@ -4,11 +4,13 @@ import { Form, Button } from "react-bootstrap";
 import { myaxios, refreshToken } from "../../Connections";
 import { Redirect } from "react-router-dom";
 import { useAlert } from 'react-alert'
+import { WaveLoading } from 'react-loadingg';
 export default function MyForm({setIsLoggedIn}) {
 
     
-    
+    const [done, setDone] = useState(false)
     const [submitted, setSubmitted] = useState(false)
+    const [loaded, setLoaded] = useState(false)
     const alert = useAlert()
     useEffect(() => {
         const myform = document.getElementById("#myform")
@@ -33,6 +35,7 @@ export default function MyForm({setIsLoggedIn}) {
         const fieldsArray = ['uname', 'uc', 'degrees', 'foi', 'skills', 'workedAt', 'gender', 'currentPosition', 'instagram', 'linkedin', 'github', 'facebook', 'bio']
         const onButtonSubmit = async function(e) {
             e.preventDefault()
+            setDone(true)
             try {
                 if(dp.files[0]) {
                     if(dp.files[0].size > 10000000) {
@@ -52,7 +55,7 @@ export default function MyForm({setIsLoggedIn}) {
                     // console.log(ares)
 
                 }
-
+                
                 const res1 = await myaxios({
                     method:"PATCH",
                     url: "api/users/me",
@@ -64,6 +67,7 @@ export default function MyForm({setIsLoggedIn}) {
                         'lastName': lastName.value
                     }
                 })
+
                 // console.log(res1)
 
                 const res = await myaxios({
@@ -89,6 +93,7 @@ export default function MyForm({setIsLoggedIn}) {
                     }
                 })
                 // console.log(res)
+                
                 setSubmitted(true)
             } catch(er) {
                 console.log(er.response.data.error)
@@ -137,6 +142,7 @@ export default function MyForm({setIsLoggedIn}) {
                 // console.log(res1)
                 firstName.value = res1.data.firstName
                 lastName.value = res1.data.lastName
+                setLoaded(true)
             }catch(err) {
                 console.log(err.response)
                 if(err.response.data.error === "jwt expired") {
@@ -149,9 +155,13 @@ export default function MyForm({setIsLoggedIn}) {
     },[])
     
 
-    if(submitted) {
+    if(loaded && done && submitted) {
         return <Redirect to="/technophiles"/>
-    } else {
+    } 
+    else if(loaded && done && !submitted) {
+        return <WaveLoading/>
+    }
+    else {
         return(
             <div className="containerdiv">
                 <div className="formdiv">
@@ -231,8 +241,8 @@ export default function MyForm({setIsLoggedIn}) {
                         </Form.Group>
     
                         <Form.Group className="mb-3" controlId="formBasicUrl" >
-                            <Form.Label>LinkedIn<span className="myspan"> *</span></Form.Label>
-                            <Form.Control type="url" required id="#linkedin"/>
+                            <Form.Label>LinkedIn</Form.Label>
+                            <Form.Control type="url" id="#linkedin"/>
                         </Form.Group>
     
                         <Form.Group className="mb-3" controlId="formBasicUrl" >

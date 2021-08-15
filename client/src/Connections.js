@@ -3,11 +3,8 @@ import axios from "axios"
 const myaxios = axios.create()
 
 myaxios.defaults.baseURL = "https://hitansh-technobar.herokuapp.com/"
-// let setIsLoggedIn
+// myaxios.defaults.baseURL = "http://localhost:5000"
 
-// const stateTransfer = (setState) => {
-//     setIsLoggedIn = setState
-// }
 
 const authorize = function(authToken, refreshToken, setIsLoggedIn) {
     myaxios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`
@@ -24,7 +21,7 @@ const refreshToken = async function(prevCall, setIsLoggedIn) {
           'Content-Type': 'application/json'
         }
       })
-      console.log(res)
+      // console.log(res)
       authorize(res.data.authToken, res.data.refreshToken, setIsLoggedIn)
       prevCall()
 

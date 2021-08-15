@@ -4,6 +4,8 @@ import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './Welcome.css'
 import Particles from 'react-particles-js';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { myaxios, refreshToken } from "../../Connections"
 
 export default function Welcome({ setIsLoggedIn }) {
@@ -23,16 +25,36 @@ export default function Welcome({ setIsLoggedIn }) {
             }
         }
     }
+
+
+    const onDelprofile = () => {
+        confirmAlert({
+          title: 'Confirm to delete',
+          message: 'Are you sure you want to delete your profile?.',
+          buttons: [
+            {
+              label: 'Yes',
+              onClick: onDelButton
+            },
+            {
+              label: 'No',
+              onClick: null
+            }
+          ]
+        });
+    };
+
+
     return (
-        <div style={{backgroundColor:"black", width:"100%", height:"90vh"}}>
+        <div style={{backgroundColor:"black", width:"100%", height:"100vh"}}>
             <Particles
                 params={{
                     "particles": {
                         "number": {
-                            "value": 100
+                            "value": 60
                         },
                         "size": {
-                            "value": 3
+                            "value": 1
                         }
                     },
                     "interactivity": {
@@ -54,10 +76,10 @@ export default function Welcome({ setIsLoggedIn }) {
                 </div>
                 <div style={{display:"flex", justifyContent:"center", flexWrap:"wrap"}}>
                     <div style={{width:"100%", display:"flex", justifyContent:"center", zIndex:"2"}}>
-                        <Button as={Link} to="/welcome/complete_profile" size="lg" variant="primary" style={{marginRight:"10px", zIndex:"2"}}>Lets go!</Button>
-                        <Button as={Link} to="/technophiles" size="lg" variant="primary" style={{marginLeft:"10px", zIndex:"2"}}>Later</Button>
+                        <Button as={Link} to="/welcome/complete_profile" size="lg" variant="secondary" style={{marginRight:"10px", zIndex:"2"}}>Lets go!</Button>
+                        <Button as={Link} to="/technophiles" size="lg" variant="secondary" style={{marginLeft:"10px", zIndex:"2"}}>Later</Button>
                     </div>
-                    <Button size="lg" variant="danger" style={{marginLeft:"10px", zIndex:"2", marginTop:"20px"}} id="#delButton" onClick={onDelButton}>Delete Profile</Button>
+                    <Button size="lg" variant="danger" style={{marginLeft:"10px", zIndex:"2", marginTop:"20px"}} id="#delButton" onClick={onDelprofile}>Delete Profile</Button>
                 </div>
 
             </div>

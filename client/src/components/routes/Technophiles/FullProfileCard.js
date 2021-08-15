@@ -22,7 +22,10 @@ export default function FullProfileCard({user}) {
     useEffect(() => {
         if(user.details[0].avatar)
         {
-            const mybuffer = btoa(String.fromCharCode.apply(null, new Uint8Array(user.details[0].avatar.data)))
+            // const mybuffer = btoa(String.fromCharCode.apply(null, new Uint8Array(user.details[0].avatar.data)))
+            const mybuffer = btoa(new Uint8Array(user.details[0].avatar.data).reduce(function (data, byte) {
+                                    return data + String.fromCharCode(byte);
+                            }, ''));
             return setDp(`data:image/png;base64,${mybuffer}`)
         }
         if(user.details[0].gender === 'female') {

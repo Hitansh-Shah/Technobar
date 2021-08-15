@@ -6,12 +6,16 @@ import Female from './female.png'
 import Pnts from './pnts.png'
 import { Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { encodeBase64 } from 'bcryptjs'
 export default function ProfileCard({uname, gender, details, id}) {
     const [dp, setDp] = useState(Pnts)
     useEffect(() => {
         if(details.avatar)
         {
-            const mybuffer = btoa(String.fromCharCode.apply(null, new Uint8Array(details.avatar.data)))
+            // const mybuffer = btoa(unescape(encodeURIComponent(new TextDecoder('utf-8').decode(new Uint8Array(details.avatar.data)))))
+            const mybuffer = btoa(new Uint8Array(details.avatar.data).reduce(function (data, byte) {
+                                    return data + String.fromCharCode(byte);
+                             }, ''));
             return setDp(`data:image/png;base64,${mybuffer}`)
         }
         if(gender === 'female') {
